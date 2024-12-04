@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0"> {{ singletruck.truck_truck }} {{ singletruck.truck_number }}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Day:</strong> {{ singletruck.truck_day }}</p>
+                            <p><strong>Departure Time:</strong> {{ singletruck.truck_departure_time }}</p>
+                            <p><strong>Origin:</strong> {{ singletruck.truck_origin }}</p>
+                            <p><strong>Destination:</strong> {{ singletruck.truck_destination }}</p>
+                            <p><strong>Operator:</strong> {{ singletruck.truck_operator }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'alltrucks' %}" class="btn btn-secondary">Back to Trucks</a>
+                    <a href="{% url 'updatetruck' singletruck.truck_id %}" class="btn btn-primary">Edit Truck</a>
+                    <a href="{% url 'singlecompanydetails' singletruck.truck_id %}" class="btn btn-success">Company Details</a>
+                    <a href="{% url 'deletetruck' singletruck.truck_id %}" class="btn btn-danger">Delete Truck</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h4 class="py-3 px-3"><u>Add Truck</u></h4>
+
+<div class="row g-1">
+  <div class="col-md-4">
+    <div class="card p-3 border border-primary border-1">
+      <form action="/addtruck/" method="POST">
+        {% csrf_token %}
+
+        <div class="mb-2">
+          <label for="truck_day" class="form-label px-2 fw-bold">Day</label>
+          <select class="form-control border border-dark border-1" name="truck_day">
+            <option value="All Days" {% if truck_day == 'All Days' %}selected{% endif %}>All Days</option>
+            <option value="Monday" {% if truck_day == 'Monday' or current_day == 'Monday' %}selected{% endif %}>Monday</option>
+            <option value="Tuesday" {% if truck_day == 'Tuesday' or current_day == 'Tuesday' %}selected{% endif %}>Tuesday</option>
+            <option value="Wednesday" {% if truck_day == 'Wednesday' or current_day == 'Wednesday' %}selected{% endif %}>Wednesday</option>
+            <option value="Thursday" {% if truck_day == 'Thursday' or current_day == 'Thursday' %}selected{% endif %}>Thursday</option>
+            <option value="Friday" {% if truck_day == 'Friday' or current_day == 'Friday' %}selected{% endif %}>Friday</option>
+            <option value="Saturday" {% if truck_day == 'Saturday' or current_day == 'Saturday' %}selected{% endif %}>Saturday</option>
+            <option value="Sunday" {% if truck_day == 'Sunday' or current_day == 'Sunday' %}selected{% endif %}>Sunday</option>
+          </select>
+        </div>
+
+        <div class="mb-2">
+          <label for="truck_departure_time" class="form-label px-2 fw-bold">Departure time</label>
+          <input type="text" class="form-control border border-dark border-1" placeholder="Enter Departure time" name="truck_departure_time">
+        </div>
+
+        <div class="mb-2">
+          <label for="truck_truck" class="form-label px-2 fw-bold">Truck</label>
+          <select class="form-control border border-dark border-1" name="truck_truck">
+            <option value="Select">Select</option>
+            <option value="AF">AF</option>
+            <option value="MP">MP</option>
+            <option value="KL">KL</option>
+            <option value="XC">XC</option>
+          </select>
+        </div>
+
+        <div class="mb-2">
+          <label for="truck_number" class="form-label px-2 fw-bold">Number</label>
+          <input type="text" class="form-control border border-dark border-1" placeholder="Enter Number" name="truck_number">
+        </div>
+
+        <div class="mb-2">
+          <label for="truck_origin" class="form-label px-2 fw-bold">Origin</label>
+          <input type="text" class="form-control border border-dark border-1" placeholder="Enter Origin" name="truck_origin">
+        </div>
+
+        <div class="mb-2">
+          <label for="truck_destination" class="form-label px-2 fw-bold">Destination</label>
+          <input type="text" class="form-control border border-dark border-1" placeholder="Enter Destination" name="truck_destination">
+        </div>
+
+        <div class="mb-2">
+          <label for="truck_operator" class="form-label px-2 fw-bold">Operator</label>
+          <select class="form-control border border-dark border-1" name="truck_operator">
+            <option value="Select">Select</option>
+            <option value="Arrow">Arrow</option>
+            <option value="Breogan">Breogan</option>
+            <option value="DHL">DHL</option>
+            <option value="De Rijk">De Rijk</option>
+            <option value="Haarlemmermeer">Haarlemmermeer</option>
+            <option value="Hartman">Hartman</option>
+            <option value="KCS">KCS</option>
+            <option value="Prevost">Prevost</option>
+            <option value="Transdanubia">Transdanubia</option>
+            <option value="Taj">Taj</option>
+          </select>
+        </div>
+      
+    </div>
+  </div>
+
+  <!-- Second card -->
+  <div class="col-md-4">
+    <div class="card p-3 border border-primary border-1">
+      <div class="mb-2">
+        <label for="truck_coloader" class="form-label px-2 fw-bold">Coload</label>
+        <select class="form-control border border-dark border-1" name="truck_coloader">
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+        </select>
+      </div>
+
+      <div class="mb-2">
+        <label for="truck_coolie" class="form-label px-2 fw-bold">Cool</label>
+        <select class="form-control border border-dark border-1" name="truck_coolie">
+
+          <option value="5">5</option>
+          <option value="20">20</option>
+          <option value="5 - 20">5 - 20</option>
+        </select>
+      </div>
+
+      <div class="mb-2">
+        <label for="truck_adr" class="form-label px-2 fw-bold">ADR</label>
+        <select class="form-control border border-dark border-1" name="truck_adr">
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+        </select>
+      </div>
+      
+      <div class="mb-2">
+        <label for="truck_order_number" class="form-label px-2 fw-bold">Order Number</label>
+        <select class="form-control border border-dark border-1" name="truck_order_number">
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Third card -->
+  <div class="col-md-4">
+    <div class="card p-3 border border-primary border-1">
+      <div class="mb-1">
+        <label for="truck_street" class="form-label px-2 fw-bold">Street</label>
+        <input type="text" class="form-control border border-dark border-1" placeholder="Enter Street" name="truck_street"required>
+      </div>
+
+      <div class="mb-1">
+        <label for="truck_street_number" class="form-label px-2 fw-bold">Number</label>
+        <input type="text" class="form-control border border-dark border-1" placeholder="Enter Number" name="truck_street_number"required>
+      </div>
+
+      <div class="mb-1">
+        <label for="truck_postal_code" class="form-label px-2 fw-bold">Postal Code</label>
+        <input type="text" class="form-control border border-dark border-1" placeholder="Enter Postal Code" name="truck_postal_code"required>
+      </div>
+
+      <div class="mb-1">
+        <label for="truck_city" class="form-label px-2 fw-bold">City</label>
+        <input type="text" class="form-control border border-dark border-1" placeholder="Enter City" name="truck_city"required>
+      </div>
+      <div class="mb-1">
+        <label for="truck_country" class="form-label px-2 fw-bold">Country</label>
+        <input type="text" class="form-control border border-dark border-1" placeholder="Enter Country" name="truck_country"required>
+      </div>
+
+      <div class="mb-1">
+        <label for="phone_country_code" class="form-label px-2 fw-bold">Country Code</label>
+        <input type="text" class="form-control border border-dark border-1" placeholder="Enter Country Code" name="phone_country_code" maxlength="3" required>
+      </div>
+      
+      <div class="mb-1">
+        <label for="phone_area_code" class="form-label px-2 fw-bold">Area Code</label>
+        <input type="text" class="form-control border border-dark border-1" placeholder="Enter Area Code" name="phone_area_code" maxlength="4" required>
+      </div>
+      
+      <div class="mb-1">
+        <label for="phone_number" class="form-label px-2 fw-bold">Phone Number</label>
+        <input type="text" class="form-control border border-dark border-1" placeholder="Enter Phone Number" name="phone_number" maxlength="8" required>
+      </div>
+      <br>
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary w-25">Add Truck</button>
+        <a href="{% url 'alltrucks' %}" class="btn btn-secondary w-25">Back</a>
+      </div>
+    </div>
+  </form>
+  </div>
+</div>
+{% endblock content %}

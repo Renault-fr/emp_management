@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<br />
+<h4 class="px-3"><u>Update Truck</u></h4>
+<hr class="border border-primary border-1 opacity-100" />
+<div class="row g-3">
+  <div class="col-md-4">
+    <div class="card p-3 border border-primary border-1">
+      <form action="{% url 'updatetruck' singletruck.truck_id %}" method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-2">
+          <label for="truck_day" class="form-label px-2 fw-bold">Day</label>
+          <input type="text" class="form-control border border-dark border-1" name="truck_day" value="{{ singletruck.truck_day }} " readonly>
+        </div>
+
+        <div class="mb-2">
+          <label for="truck_departure_time" class="form-label px-2 fw-bold">Departure time</label>
+          <input type="text" class="form-control border border-dark border-1" name="truck_departure_time" value="{{ singletruck.truck_departure_time }} ">
+        </div>
+
+        <div class="mb-2">
+          <label for="truck_truck" class="form-label px-2 fw-bold">Truck</label>
+          <input type="text" class="form-control border border-dark border-1" name="truck_truck" value="{{ singletruck.truck_truck }} " readonly>
+        </div>
+
+        <div class="mb-2">
+          <label for="truck_number" class="form-label px-2 fw-bold">Number</label>
+          <input type="text" class="form-control border border-dark border-1" name="truck_number" value="{{ singletruck.truck_number }} " readonly>
+        </div>
+
+        <div class="mb-2">
+          <label for="truck_origin" class="form-label px-2 fw-bold">Origin</label>
+          <input type="text" class="form-control border border-dark border-1" name="truck_origin" value="{{ singletruck.truck_origin }} " readonly>
+        </div>
+
+        <div class="mb-2">
+          <label for="truck_destination" class="form-label px-2 fw-bold">Destination</label> 
+          <input type="text" class="form-control border border-dark border-1" name="truck_destination" value="{{ singletruck.truck_destination }} " readonly>
+        </div>
+
+        <div class="mb-2">
+          <label for="truck_operator" class="form-label px-2 fw-bold">Operator</label>
+          <input type="text" class="form-control border border-dark border-1" name="truck_operator" value="{{ singletruck.truck_operator }}">
+        </div>
+        <hr>
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary">Update Truck</button>
+          <a href="{% url 'alltrucks' %}" class="btn btn-secondary w-25">Back</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

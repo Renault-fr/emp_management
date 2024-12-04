@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h2 class="text-center" style="font: 1.5em sans-serif;">Edit Truck</h2>
+<hr class="border border-primary opacity-100">
+<div class="card p-3 bg-body-secondary text-dark w-50 mx-auto fw-bolder">
+<form action="{% url 'edittruck' truck.id %}" method="post">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="day">Day:</label>
+        <select name="day" id="day" class="form-control form-control-sm">
+            <option value="Monday" {% if truck.day == "Monday" %}selected{% endif %}>Monday</option>
+            <option value="Tuesday" {% if truck.day == "Tuesday" %}selected{% endif %}>Tuesday</option>
+            <option value="Wednesday" {% if truck.day == "Wednesday" %}selected{% endif %}>Wednesday</option>
+            <option value="Thursday" {% if truck.day == "Thursday" %}selected{% endif %}>Thursday</option>
+            <option value="Friday" {% if truck.day == "Friday" %}selected{% endif %}>Friday</option>
+            <option value="Saturday" {% if truck.day == "Saturday" %}selected{% endif %}>Saturday</option>
+            <option value="Sunday" {% if truck.day == "Sunday" %}selected{% endif %}>Sunday</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="departure_time">Departure Time (24-hour):</label>
+        <input 
+            type="time" 
+            name="departure_time" 
+            id="departure_time" 
+            class="form-control form-control-sm" 
+            value="{{ truck.departure_time|time:'H:i' }}" 
+            required
+        >
+    </div>
+    <div class="form-group">
+        <label for="tender">Tender:</label>
+        <input type="text" name="tender" id="tender" class="form-control form-control-sm" value="{{ truck.tender }}" required>
+    </div>
+    <div class="form-group">
+        <label for="truck_number">Truck Number:</label>
+        <input type="text" name="truck_number" id="truck_number" class="form-control form-control-sm" value="{{ truck.truck_number }}" required>
+    </div>
+    <div class="form-group">
+        <label for="origin">Origin:</label>
+        <input type="text" name="origin" id="origin" class="form-control form-control-sm" value="{{ truck.origin }}" required>
+    </div>
+    <div class="form-group">
+        <label for="destination">Destination:</label>
+        <input type="text" name="destination" id="destination" class="form-control form-control-sm" value="{{ truck.destination }}" required>
+    </div>
+    <div class="form-group">
+        <label for="operator">Operator:</label>
+        <input type="text" name="operator" id="operator" class="form-control form-control-sm" value="{{ truck.operator }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Changes</button>
+    <a href="{% url 'alltrucks' %}" class="btn btn-secondary">Cancel</a>
+</form>
+</div>
+{% endblock %}

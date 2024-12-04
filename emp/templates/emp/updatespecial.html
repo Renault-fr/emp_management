@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br />
+<h4 class="px-3 text-center"><u>  Update Special</u></h4>
+<hr class="border border-primary border-1 opacity-100" />
+<div class="d-flex justify-content-center">
+  <div class="col-md-4">
+    <div class="card p-3 border border-primary border-1">
+        <form action="{% url 'updatespecial' truck.truck_id %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-2">
+          <label for="truck_coloader" class="form-label px-2 fw-bold">Coload</label>
+          <select class="form-control border border-dark border-1" name="truck_coloader">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+
+        <div class="mb-2">
+          <label for="truck_coolie" class="form-label px-2 fw-bold">Cool</label>
+          <select class="form-control border border-dark border-1" name="truck_coolie">
+            <option value="No">No</option>
+            <option value="5" class="color-primary">05</option>
+            <option value="20" class="color-danger">20</option>
+            <option value="5 - 20">5 - 20</option>
+          </select>
+        </div>
+
+        <div class="mb-2">
+          <label for="truck_adr" class="form-label px-2 fw-bold">ADR</label>
+          <select class="form-control border border-dark border-1" name="truck_adr">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+        
+        <div class="mb-2">
+          <label for="truck_order_number" class="form-label px-2 fw-bold">Order Number</label>
+          <select class="form-control border border-dark border-1" name="truck_order_number">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+        
+        <hr>
+        <div class="d-flex justify-content-center gap-2">
+          <button type="submit" class="btn btn-primary w-25">Add Truck</button>
+          <a href="{% url 'alltrucks' %}" class="btn btn-secondary w-25">Back</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

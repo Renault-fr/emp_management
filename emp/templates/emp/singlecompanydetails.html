@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Company: {{ singletruck.truck_operator }}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Address:</strong> {{ singletruck.truck_address }}</p>
+                            <p><strong>Postal Code:</strong> {{ singletruck.truck_postal_code }}</p>
+                            <p><strong>City:</strong> {{ singletruck.truck_city }}</p>
+                            <p><strong>Phone number:</strong> {{ singletruck.phone_country_code }} {{ singletruck.phone_area_code }} {{ singletruck.phone_number }}</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'alltrucks' %}" class="btn btn-secondary">Back to Trucks</a>
+                    <a href="{% url 'updatetruck' singletruck.truck_id %}" class="btn btn-primary">Edit Truck</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
